@@ -186,7 +186,7 @@ export default {
         let token = data.token;
         this.$store.commit("LOGIN_IN", token);
         this.$message.success("登陆成功");
-        this.$router.replace("/home");
+        this.$router.replace("/dashboard");
       }
     },
     clickLogin() {

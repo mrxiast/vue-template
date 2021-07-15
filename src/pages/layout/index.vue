@@ -1,17 +1,11 @@
 <template>
   <div class="container">
     <div :class="isCollapse ? 'left-box text-algin' : 'left-box'">
-      <transition name="fade" mode="out-in">
-        <div class="title-box" v-if="!isCollapse">
-          <i>Fortune Pay</i>
-        </div>
-        <img
-          v-if="isCollapse"
-          class="logo-box"
-          src="@/static/logo.png"
-          alt=""
-        />
-      </transition>
+      <div class="title-box" v-if="!isCollapse">
+        <i>Fortune Pay</i>
+      </div>
+      <img v-if="isCollapse" class="logo-box" src="@/static/logo.png" alt="" />
+
       <el-menu
         :default-active="routerIndex"
         class="el-menu-vertical-demo"
@@ -24,10 +18,8 @@
     <div class="right-box">
       <div class="top-box">
         <div class="top-box-left" @click="isCollapse = !isCollapse">
-          <transition name="fade" mode="out-in">
-            <i class="el-icon-s-fold" v-if="!isCollapse"></i>
-            <i class="el-icon-s-unfold" v-else></i>
-          </transition>
+          <i class="el-icon-s-fold" v-if="!isCollapse"></i>
+          <i class="el-icon-s-unfold" v-else></i>
         </div>
         <div class="top-box-right">
           <div class="user-box">
@@ -100,11 +92,14 @@ export default {
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 400px;
+  min-height: 100%;
+}
+.el-menu--collapse {
+  width: 70px;
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

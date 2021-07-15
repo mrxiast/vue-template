@@ -51,14 +51,21 @@ const router = new Router({
           },
           component: () => import("@/pages/dashboard")
         },
+        // {
+        //   path: '/transactions/e-wallet',
+        //   name: 'E-Wallet',
+        //   meta: {
+        //     name: 'E-Wallet'
+        //   },
+        //   component: () => import("@/pages/transactions/e-wallet")
+        // },
         {
-          path: '/test1',
-          name: 'test1',
+          path: '/transactions/e-wallet',
+          name: 'E-Wallet',
           meta: {
-            name: '测试1',
-            requiresAuth: true
+            name: 'E-Wallet'
           },
-          component: () => import("@/pages/test1")
+          component: () => import("@/pages/transactions/e-wallet")
         },
         {
           path: '/test2-1',

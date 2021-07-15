@@ -1,14 +1,20 @@
 const navList = [
-
   {
     title: "Dashboard",
     icon: "el-icon-menu",
     url: "/dashboard",
   },
   {
-    title: "测试一",
+    title: "Transactions",
     icon: "el-icon-menu",
-    url: "/test1",
+    url: "/transactions",
+    children: [
+      {
+        title: 'E-Wallet',
+        icon: 'el-icon-bank-card',
+        url: '/transactions/e-wallet'
+      }
+    ]
   },
   {
     title: "测试二",
