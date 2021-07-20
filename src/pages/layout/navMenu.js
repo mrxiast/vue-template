@@ -13,8 +13,38 @@ const navList = [
         title: 'E-Wallet',
         icon: 'el-icon-bank-card',
         url: '/transactions/e-wallet'
+      },
+      {
+        title: 'Customer-OTC',
+        icon: 'el-icon-bank-card',
+        url: '/transactions/customer-otc'
+      },
+      {
+        title: 'Direct-OTC',
+        icon: 'el-icon-bank-card',
+        url: '/transactions/direct-otc'
+      },
+      {
+        title: 'Payments',
+        icon: 'el-icon-bank-card',
+        url: '/transactions/pay-ments'
+      },
+      {
+        title: 'Netbanking',
+        icon: 'el-icon-bank-card',
+        url: '/transactions/netbanking'
+      },
+      {
+        title: 'Prepaid Acct',
+        icon: 'el-icon-bank-card',
+        url: '/transactions/pre-paid'
       }
     ]
+  },
+  {
+    title: "APP-User",
+    icon: "el-icon-menu",
+    url: "/app-user",
   },
   {
     title: "测试二",

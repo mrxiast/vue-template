@@ -68,6 +68,50 @@ const router = new Router({
           component: () => import("@/pages/transactions/e-wallet")
         },
         {
+          path: '/transactions/customer-otc',
+          name: 'Customer-OTC',
+          meta: {
+            name: 'Customer-OTC'
+          },
+          component: () => import("@/pages/transactions/customer-otc")
+        },
+        {
+          path: '/transactions/direct-otc',
+          name: 'Direct-OTC',
+          meta: {
+            name: 'Direct-OTC'
+          },
+          component: () => import("@/pages/transactions/direct-otc")
+        }, {
+          path: '/transactions/pay-ments',
+          name: 'Payments',
+          meta: {
+            name: 'Payments'
+          },
+          component: () => import("@/pages/transactions/pay-ments")
+        }, {
+          path: '/transactions/netbanking',
+          name: 'Netbanking',
+          meta: {
+            name: 'Netbanking'
+          },
+          component: () => import("@/pages/transactions/netbanking")
+        }, {
+          path: '/transactions/pre-paid',
+          name: 'Prepaid Acct',
+          meta: {
+            name: 'Prepaid Acct'
+          },
+          component: () => import("@/pages/transactions/pre-paid")
+        }, {
+          path: '/app-user',
+          name: 'APP-User',
+          meta: {
+            name: 'APP-User'
+          },
+          component: () => import("@/pages/app-user")
+        },
+        {
           path: '/test2-1',
           name: 'test2',
           meta: {

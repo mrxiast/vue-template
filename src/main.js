@@ -8,10 +8,11 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en'
 import Fragment from 'vue-fragment'
+import Print from 'vue-print-nb'//打印插件
 
 // import * as globalFilter from './filters/filters'
 // 完整加载
-
+Vue.use(Print);
 Vue.use(Fragment.Plugin)//解决菜单收起，文字不隐藏
 Vue.use(ElementUI, { locale })
 Vue.config.productionTip = false

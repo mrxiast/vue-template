@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="containers">
     <div :class="isCollapse ? 'left-box text-algin' : 'left-box'">
       <div class="title-box" v-if="!isCollapse">
         <i>Fortune Pay</i>
@@ -89,7 +89,7 @@ export default {
 <style lang="less" scoped>
 @import "./index.less";
 </style>
-<style>
+<style lang="less">
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 100%;
@@ -103,5 +103,11 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.module-box {
+  .el-dialog {
+    width: 1200px;
+    background-color: #f5f5f5;
+  }
 }
 </style>

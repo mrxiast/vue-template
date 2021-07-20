@@ -3,6 +3,7 @@
     <div class="top-box">
       <div class="left-box">
         <el-input
+          style="width: 300px"
           v-model="searchId"
           placeholder="Enter transaction id"
         ></el-input>
@@ -19,10 +20,10 @@
             >
             </el-date-picker>
           </div>
-          <el-button type="primary">Search</el-button>
         </div>
       </div>
       <div>
+        <el-button>Search</el-button>
         <el-button type="primary">Export</el-button>
       </div>
     </div>
@@ -91,8 +92,8 @@
       </div>
     </div>
     <div class="module-box">
-      <el-dialog :visible.sync="showDia">
-        <div>
+      <el-dialog :visible.sync="showDia" :close-on-click-modal="false">
+        <div id="print">
           <div class="dia-top-box">
             <div class="top-left-box">
               <div class="dia-title-box">Transaction ID</div>
@@ -100,7 +101,9 @@
                 NKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
               </div>
             </div>
-            <el-button type="primary" icon="el-icon-printer">Print</el-button>
+            <el-button type="primary" icon="el-icon-printer" v-print="printObj"
+              >Print</el-button
+            >
           </div>
           <div class="tran-box">
             <div class="tran-box-title">Transaction details</div>
@@ -162,9 +165,80 @@
                 >
               </el-row>
             </div>
+            <div class="tran-box-title" style="margin-top: 20px">Fund flow</div>
+            <div>
+              <el-row>
+                <el-col :span="6"
+                  ><div class="grid-content grid-bgc">
+                    Transaction amount
+                  </div></el-col
+                >
+                <el-col :span="18"
+                  ><div class="grid-content">1000Php</div></el-col
+                >
+              </el-row>
+              <el-row>
+                <el-col :span="6"
+                  ><div class="grid-content grid-bgc">
+                    Refund amount
+                  </div></el-col
+                >
+                <el-col :span="18"
+                  ><div class="grid-content">1000Php</div></el-col
+                >
+              </el-row>
+              <el-row>
+                <el-col :span="6"
+                  ><div class="grid-content grid-bgc">
+                    Transaction service charge
+                  </div></el-col
+                >
+                <el-col :span="18"
+                  ><div class="grid-content">1000Php</div></el-col
+                >
+              </el-row>
+              <el-row>
+                <el-col :span="6"
+                  ><div class="grid-content grid-bgc">Net amount</div></el-col
+                >
+                <el-col :span="18"
+                  ><div class="grid-content">1000Php</div></el-col
+                >
+              </el-row>
+            </div>
           </div>
-          <div class="send-box"></div>
-          <div class="short-box"></div>
+
+          <div class="send-box">
+            <div class="send-item">
+              <div class="send-title">Sender's details</div>
+              <div class="send-content">
+                <div class="send-tab-title">Customer account ID</div>
+                <div class="send-tab-content">123</div>
+              </div>
+              <div class="send-content">
+                <div class="send-tab-title">Customer mobile number</div>
+                <div class="send-tab-content">456</div>
+              </div>
+            </div>
+            <div class="send-item">
+              <div class="send-title">Receiver's details</div>
+              <div class="send-content">
+                <div class="send-tab-title">Customer account ID</div>
+                <div class="send-tab-content">996</div>
+              </div>
+              <div class="send-content">
+                <div class="send-tab-title">Customer mobile number</div>
+                <div class="send-tab-content">123</div>
+              </div>
+            </div>
+          </div>
+          <div class="short-box">
+            <div class="short-title">Short message</div>
+            <div>
+              <span style="color: #f00">*</span>Debit 1000 from Payer's wallet
+              balance and credit to Payee's wallet balance
+            </div>
+          </div>
         </div>
       </el-dialog>
     </div>
@@ -175,6 +249,13 @@
 export default {
   data() {
     return {
+      //打印配置
+      printObj: {
+        id: "print", // 这里是要打印元素的ID
+        popTitle: "", // 打印的标题
+        extraCss: "", // 打印可引入外部的一个 css 文件
+        extraHead: "", // 打印头部文字
+      },
       showDia: false,
       pageNum: 1,
       pageSize: 10,
@@ -270,6 +351,7 @@ export default {
   methods: {
     changeType(num) {
       this.listType = num;
+      this.pageNum = 1;
     },
     goView(item) {
       this.showDia = true;
@@ -281,12 +363,4 @@ export default {
 
 <style lang="less" scoped>
 @import "./index.less";
-</style>
-<style lang="less">
-.module-box {
-  .el-dialog {
-    width: 900px;
-    background-color: #f5f5f5;
-  }
-}
 </style>
