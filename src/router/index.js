@@ -104,12 +104,19 @@ const router = new Router({
           },
           component: () => import("@/pages/transactions/pre-paid")
         }, {
-          path: '/app-user',
-          name: 'APP-User',
+          path: '/customer',
+          name: 'Customer',
           meta: {
-            name: 'APP-User'
+            name: 'Customer'
           },
-          component: () => import("@/pages/app-user")
+          component: () => import("@/pages/customer")
+        }, {
+          path: '/merchant',
+          name: 'Merchant',
+          meta: {
+            name: 'Merchant'
+          },
+          component: () => import("@/pages/merchant")
         },
         {
           path: '/test2-1',

@@ -42,9 +42,13 @@ const navList = [
     ]
   },
   {
-    title: "APP-User",
+    title: "Customer",
     icon: "el-icon-menu",
-    url: "/app-user",
+    url: "/customer",
+  }, {
+    title: "Merchant",
+    icon: "el-icon-menu",
+    url: "/merchant",
   },
   {
     title: "测试二",
