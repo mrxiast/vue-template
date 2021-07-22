@@ -4,12 +4,8 @@ import createPersistedState from "vuex-persistedstate"
 
 
 const state = {
-    get UserToken () {
-        return localStorage.getItem('token')
-    },
-    set UserToken (value) {
-        localStorage.setItem('token', value)
-    },
+    userInfo: '',
+    UserToken: '',
     routerIndex: '',
     menuName: ''
 }
@@ -25,6 +21,7 @@ const mutations = {
     //登出 清除token
     LOGIN_OUT (state) {
         state.UserToken = ''
+        state.userInfo = ''
     },
     //设置左侧菜单栏
     SET_ROUTER_INDEX (state, index) {

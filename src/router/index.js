@@ -117,7 +117,61 @@ const router = new Router({
             name: 'Merchant'
           },
           component: () => import("@/pages/merchant")
+        }, {
+          path: '/merchant-detail/:id',
+          name: 'Merchant Detail',
+          meta: {
+            name: 'Merchant Detail'
+          },
+          component: () => import("@/pages/merchant/merchant-detail")
         },
+        {
+          path: '/user-center',
+          name: 'user-center',
+          meta: {
+            name: 'user-center'
+          },
+          component: () => import("@/pages/user-center/index"),
+          redirect: '/user-center/check-my-profile',
+          children: [{
+            path: '/user-center/change-login-passwords',
+            name: 'Change login passwords',
+            meta: {
+              name: 'Change login passwords'
+            },
+            component: () => import("@/pages/user-center/change-login")
+          },
+          {
+            path: '/user-center/check-my-profile',
+            name: 'Check my profile',
+            meta: {
+              name: 'Merchant'
+            },
+            component: () => import("@/pages/user-center/check-my-profile")
+          }]
+        }, {
+          path: '/service/message-centre',
+          name: 'Message centre',
+          meta: {
+            name: 'Message centre'
+          },
+          component: () => import("@/pages/service/message-centre")
+        }, {
+          path: '/service/agency-service',
+          name: 'Agency service',
+          meta: {
+            name: 'Agency service'
+          },
+          component: () => import("@/pages/service/agency-service")
+        }, {
+          path: '/service/payroll',
+          name: 'Payroll',
+          meta: {
+            name: 'Payroll'
+          },
+          component: () => import("@/pages/service/payroll")
+        },
+
         {
           path: '/test2-1',
           name: 'test2',

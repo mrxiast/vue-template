@@ -24,23 +24,16 @@
         <div class="top-box-right">
           <div class="user-box">
             <img src="@/static/logo.png" alt="" />
-            <el-dropdown trigger="click">
+            <div @click="goCenter">
               <span
                 class="el-dropdown-link"
                 style="color: #fff; cursor: pointer; font-size: 16px"
               >
                 Olivia<i class="el-icon-caret-bottom el-icon--right"></i>
               </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>黄金糕</el-dropdown-item>
-                <el-dropdown-item>狮子头</el-dropdown-item>
-                <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+            </div>
           </div>
-          <div class="logout-box">
+          <div class="logout-box" @click="layout">
             <img class="logout-img" src="@/static/icon/out.png" alt="" />
             <span>Logout</span>
           </div>
@@ -72,6 +65,9 @@ export default {
     ...mapState(["routerIndex", "menuName"]),
   },
   methods: {
+    goCenter() {
+      this.$router.push("/user-center");
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -82,6 +78,28 @@ export default {
       this.$store.commit("SET_ROUTER_INDEX", v);
       this.$router.push(v);
     },
+    layout() {
+      this.$confirm("此操作将退出, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          localStorage.clear();
+          this.$store.commit("LOGIN_OUT");
+          this.$message({
+            type: "success",
+            message: "退出成功!",
+          });
+          this.$router.replace("/login");
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    },
   },
 };
 </script>
@@ -91,7 +109,7 @@ export default {
 </style>
 <style lang="less">
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
+  width: 280px;
   min-height: 100%;
 }
 .el-menu--collapse {

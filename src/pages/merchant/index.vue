@@ -88,251 +88,6 @@
       </div>
     </div>
     <div class="module-box">
-      <el-dialog :visible.sync="showDia" :close-on-click-modal="false">
-        <div>
-          <div class="dia-title">Merchant name: No.1 store</div>
-          <div class="base-style tabs-box">
-            <div
-              :class="
-                detailType === 1 ? 'default-box is-active' : 'default-box'
-              "
-              @click="changeType(1)"
-            >
-              Profile
-            </div>
-            <div
-              :class="
-                detailType === 2 ? 'default-box is-active' : 'default-box'
-              "
-              @click="changeType(2)"
-            >
-              Files
-            </div>
-          </div>
-          <div v-if="detailType === 1">
-            <div class="base-style">
-              <div class="base-title">Merchant profile</div>
-              <div class="mer-one-box">
-                <div class="mer-one-one-box" style="display: flex">
-                  <div class="mer-one-one-left-box">
-                    <div class="mer-ava">
-                      <img src="@/static/logo.png" alt="" />
-                    </div>
-                    <div class="mer-title">Merchant photo</div>
-                  </div>
-                  <div class="table-content">
-                    <div class="table-content-item">
-                      <div class="table-content-item-title">
-                        Merchant legal name
-                      </div>
-                      <div class="table-content-item-value">xxxxxxxxxx</div>
-                      <div class="table-content-item-title">Merchant ID</div>
-                      <div class="table-content-item-value">25555</div>
-                    </div>
-                    <div class="table-content-item">
-                      <div class="table-content-item-title">Mobile number</div>
-                      <div class="table-content-item-value">xxxxxxxxxx</div>
-                      <div class="table-content-item-title">Email address</div>
-                      <div class="table-content-item-value">25555</div>
-                    </div>
-                    <div class="table-content-item">
-                      <div class="table-content-item-title">Type</div>
-                      <div class="table-content-item-value">xxxxxxxxxx</div>
-                      <div class="table-content-item-title">Website</div>
-                      <div class="table-content-item-value">25555</div>
-                    </div>
-                    <div class="table-content-item">
-                      <div class="table-content-item-title">Merchant level</div>
-                      <div class="table-content-item-value">xxxxxxxxxx</div>
-                      <div class="table-content-item-title">
-                        Name of first contact
-                      </div>
-                      <div class="table-content-item-value">25555</div>
-                    </div>
-                    <div class="table-content-item">
-                      <div class="table-content-item-title">Partner enable</div>
-                      <div class="table-content-item-value">xxxxxxxxxx</div>
-                      <div class="table-content-item-title">
-                        Settlement date
-                      </div>
-                      <div class="table-content-item-value">25555</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="mer-one-box">
-                <div class="mer-one-one-box" style="display: flex">
-                  <div class="mer-one-one-left-box mer-two">
-                    <div>
-                      <div class="mer-title mer-two-title">Verify status</div>
-                      <div class="mer-title">Pending</div>
-                    </div>
-                  </div>
-                  <div class="table-content">
-                    <div class="table-content-item">
-                      <div class="table-content-item-title">Region</div>
-                      <div class="table-content-item-value">xxxxxxxxxx</div>
-                      <div class="table-content-item-title">Province</div>
-                      <div class="table-content-item-value">25555</div>
-                    </div>
-                    <div class="table-content-item">
-                      <div class="table-content-item-title">Brangay</div>
-                      <div class="table-content-item-value">xxxxxxxxxx</div>
-                      <div class="table-content-item-title">branch city</div>
-                      <div class="table-content-item-value">25555</div>
-                    </div>
-                    <div class="table-content-item">
-                      <div class="table-content-item-title">Type</div>
-                      <div
-                        class="table-content-item-value"
-                        style="width: 750px"
-                      >
-                        xxxxxxxxxx
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="base-style">
-              <div class="base-title">Asset summary</div>
-              <div class="table-content" style="margin-left: 220px">
-                <div class="table-content-item">
-                  <div class="table-content-item-title">Region</div>
-                  <div class="table-content-item-value">xxxxxxxxxx</div>
-                  <div class="table-content-item-title">Province</div>
-                  <div class="table-content-item-value">25555</div>
-                </div>
-                <div class="table-content-item">
-                  <div class="table-content-item-title">Brangay</div>
-                  <div class="table-content-item-value">xxxxxxxxxx</div>
-                  <div class="table-content-item-title">branch city</div>
-                  <div class="table-content-item-value">25555</div>
-                </div>
-              </div>
-            </div>
-            <div class="base-style">
-              <div class="base-title">Quick operations</div>
-              <div class="quick-content">
-                <el-button @click="createQR">Genrate Merchant QR</el-button>
-                <div class="select-box">
-                  <div class="select-box-title">Commission</div>
-                  <div>
-                    <el-select v-model="commissionVal" placeholder="请选择">
-                      <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                      >
-                      </el-option>
-                    </el-select>
-                  </div>
-                </div>
-                <div class="select-box">
-                  <div class="select-box-title">MDR</div>
-                  <div>
-                    <el-select v-model="commissionVal" placeholder="请选择">
-                      <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                      >
-                      </el-option>
-                    </el-select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="base-style">
-              <div
-                class="base-title"
-                style="display: flex; justify-content: space-between"
-              >
-                <span>Bank information</span>
-                <!-- <span style="font-weight: 400; cursor: pointer; color: #409eff"
-                  >+ Add new bank</span
-                > -->
-              </div>
-              <div
-                class="table-content"
-                style="margin-left: 220px; margin-top: 10px"
-              >
-                <div class="table-content-item">
-                  <div class="table-content-item-title">Bank Name</div>
-                  <div class="table-content-item-value" style="width: 750px">
-                    xxxxxxxxxx
-                  </div>
-                </div>
-                <div class="table-content-item">
-                  <div class="table-content-item-title">Bank Branch</div>
-                  <div class="table-content-item-value" style="width: 750px">
-                    xxxxxxxxxx
-                  </div>
-                </div>
-                <div class="table-content-item">
-                  <div class="table-content-item-title">Account Name</div>
-                  <div class="table-content-item-value" style="width: 750px">
-                    xxxxxxxxxx
-                  </div>
-                </div>
-                <div class="table-content-item">
-                  <div class="table-content-item-title">Account Number</div>
-                  <div class="table-content-item-value" style="width: 750px">
-                    xxxxxxxxxx
-                  </div>
-                </div>
-                <div class="table-content-item">
-                  <div class="table-content-item-title">Bank service fee</div>
-                  <div class="table-content-item-value" style="width: 750px">
-                    xxxxxxxxxx
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div v-if="detailType === 2">
-            <div class="base-style">
-              <div class="file-box" v-for="i in 3" :key="i">
-                <div class="file-img">
-                  <img src="@/static/logo.png" alt="" />
-                </div>
-                <div class="file-content">
-                  <div>
-                    <div class="file-title">
-                      File name:
-                      <span>8888888888888888888</span>
-                    </div>
-                    <div class="file-title">
-                      Uploaded date:
-                      <span>2021/05/05 12:33:33</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <el-dialog
-          width="20%"
-          :close-on-click-modal="false"
-          :visible.sync="showCode"
-          append-to-body
-          center
-        >
-          <div style="text-align: center">
-            <img class="img-pic" src="@/static/logo.png" alt="" />
-            <div class="code-title">Merchant legal name: 7-11 store</div>
-            <div class="code-id">Fortune Pay merchant ID:9338338383</div>
-            <img class="img-code" src="@/static/logo.png" alt="" />
-            <div class="code-time">OR generated at: April 14 2021 12:20:20</div>
-            <el-button type="primary">Download</el-button>
-          </div>
-        </el-dialog>
-      </el-dialog>
-    </div>
-    <div class="module-box">
       <el-dialog :visible.sync="showAdd" :close-on-click-modal="false">
         <div class="add-content">
           <div class="add-left">
@@ -343,132 +98,345 @@
               Minimum 250*250
             </div>
           </div>
-          <div class="add-right base-style">
-            <div class="base-title">Partner profile</div>
-            <div class="form-box">
-              <div class="input-item">
-                <div class="input-item-title">Partner legal name</div>
-                <div class="input-item-input">
-                  <el-input
-                    v-model="addForm.legalname"
-                    placeholder="Enter merchant legal name"
-                  />
-                </div>
-              </div>
-              <div class="input-item">
-                <div class="input-item-title">Partner DBA name</div>
-                <div class="input-item-input">
-                  <el-input
-                    v-model="addForm.dbaname"
-                    placeholder="Enter merchant DBA name"
-                  />
-                </div>
-              </div>
-              <div class="input-item">
-                <div class="input-item-title">Partner first contact person</div>
-                <div class="input-item-input">
-                  <el-input
-                    v-model="addForm.firstName"
-                    placeholder="Enter merchant DBA name"
-                  />
-                </div>
-              </div>
-              <div class="input-item">
-                <div class="input-item-title">Partner first contact person</div>
-                <div class="input-item-input">
-                  <el-input
-                    v-model="addForm.middleName"
-                    placeholder="Enter merchant DBA name"
-                  />
-                </div>
-              </div>
-              <div class="input-item">
-                <div class="input-item-title">Partner first contact person</div>
-                <div class="input-item-input">
-                  <el-input
-                    v-model="addForm.lastName"
-                    placeholder="Enter merchant DBA name"
-                  />
-                </div>
-              </div>
-              <div class="input-item">
-                <div class="input-item-title">Partner email address</div>
-                <div class="input-item-input">
-                  <el-input
-                    v-model="addForm.email"
-                    placeholder="Enter merchant DBA name"
-                  />
-                </div>
-              </div>
-              <div class="input-item">
-                <div class="input-item-title">Merchant mobile number</div>
-                <div class="input-item-input">
-                  <el-input
-                    v-model="addForm.number"
-                    placeholder="Enter merchant DBA name"
-                  />
-                </div>
-              </div>
-              <div class="input-item">
-                <div class="input-item-title">partner type</div>
-                <div class="input-item-input">
-                  <el-select v-model="addForm.parType" placeholder="请选择">
-                    <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
-                    >
-                    </el-option>
-                  </el-select>
-                </div>
-              </div>
-
-              <div class="input-item">
-                <div class="input-item-title">Partner level</div>
-                <div class="input-item-input">
-                  <el-select v-model="addForm.parLevel" placeholder="请选择">
-                    <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
-                    >
-                    </el-option>
-                  </el-select>
-                </div>
-              </div>
-              <div class="input-item">
-                <div class="input-item-title"></div>
-                <div class="input-item-input"></div>
-              </div>
-              <div class="par-box">
-                <div class="input-item-title par-title">Partner website</div>
-                <div class="input-item-input">
-                  <div
-                    class="par-input"
-                    v-for="(item, index) in addForm.websiteList"
-                    :key="index"
-                  >
+          <div>
+            <div class="add-right base-style">
+              <div class="base-title">Partner profile</div>
+              <div class="form-box">
+                <div class="input-item">
+                  <div class="input-item-title">Partner legal name</div>
+                  <div class="input-item-input">
                     <el-input
-                      style="margin: 5px 0"
-                      v-model="item.url"
-                    ></el-input>
-
-                    <i
-                      @click="delWebSite(item)"
-                      class="el-icon-remove-outline par-i"
-                    ></i>
+                      v-model="addForm.legalname"
+                      placeholder="Enter merchant legal name"
+                    />
                   </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Partner DBA name</div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.dbaname"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">
+                    Partner first contact person
+                  </div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.firstName"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">
+                    Partner first contact person
+                  </div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.middleName"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">
+                    Partner first contact person
+                  </div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.lastName"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Partner email address</div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.email"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Merchant mobile number</div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.number"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">partner type</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
 
-                  <el-button type="primary" size="small" @click="addWebsite"
-                    >add website</el-button
-                  >
+                <div class="input-item">
+                  <div class="input-item-title">Partner level</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parLevel" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title"></div>
+                  <div class="input-item-input"></div>
+                </div>
+                <div class="par-box">
+                  <div class="input-item-title par-title">Partner website</div>
+                  <div class="input-item-input">
+                    <div
+                      class="par-input"
+                      v-for="(item, index) in addForm.websiteList"
+                      :key="index"
+                    >
+                      <el-input
+                        style="margin: 5px 0"
+                        v-model="item.url"
+                      ></el-input>
+
+                      <i
+                        @click="delWebSite(item)"
+                        class="el-icon-remove-outline par-i"
+                      ></i>
+                    </div>
+
+                    <el-button type="primary" size="small" @click="addWebsite"
+                      >add website</el-button
+                    >
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="add-right base-style">
+              <div class="base-title">Partner location</div>
+              <div class="form-box">
+                <div class="input-item">
+                  <div class="input-item-title">Select region</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Select province</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Select barangay</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Select city</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Enter postal code</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.legalname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title"></div>
+                  <div class="input-item-input"></div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Enter street address</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-right base-style">
+              <div class="base-title">Partner account seeting</div>
+              <div class="form-box">
+                <div class="input-item">
+                  <div class="input-item-title">Commission rate</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Bank service fee</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Settlement date</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-right base-style">
+              <div class="base-title">Partner location</div>
+              <div class="form-box">
+                <div class="input-item">
+                  <div class="input-item-title">Bank Name</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.legalname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Bank Branch</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Account Name</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Account Number</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-right base-style">
+              <div class="base-title">Partner img</div>
+              <div class="add-up" @click="showUp">+ Upload file</div>
+              <div class="pic-box">
+                <div class="pic-item">
+                  <div class="left-box">
+                    <el-row>
+                      <el-col :span="4" style="line-height: 35px"
+                        ><div>File name:</div></el-col
+                      >
+                      <el-col :span="20" style="line-height: 35px"
+                        ><div>这里是文件名称</div></el-col
+                      >
+                    </el-row>
+                    <el-row>
+                      <el-col :span="4" style="line-height: 35px"
+                        ><div>File down url</div></el-col
+                      >
+                      <el-col :span="20" style="line-height: 35px"
+                        ><div><a href="">www.baidu.com</a></div></el-col
+                      >
+                    </el-row>
+                  </div>
+
+                  <div class="right-box">Delete</div>
+                </div>
+              </div>
+            </div>
+            <div class="con-btn">
+              <el-button type="primary" @click="confirm">Confirm</el-button>
+            </div>
           </div>
         </div>
+        <el-dialog width="30%" :visible.sync="upBox" append-to-body>
+          <div>Please enter file name</div>
+          <el-input v-model="upName" class="up-name"></el-input>
+          <el-upload
+            ref="upload"
+            class="upload-demo"
+            action="https://jsonplaceholder.typicode.com/posts/"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :before-remove="beforeRemove"
+            multiple
+            :limit="1"
+            :on-exceed="handleExceed"
+          >
+            <el-button size="small" type="primary">Upload file here</el-button>
+            <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
+          </el-upload>
+          <div class="con-btn">
+            <el-button type="primary" @click="addImgss">Confirm</el-button>
+          </div>
+        </el-dialog>
       </el-dialog>
     </div>
   </div>
@@ -522,7 +490,6 @@ export default {
           label: "北京烤鸭",
         },
       ],
-      commissionVal: "",
       tabsName: "merchant",
       pageNum: 1,
       pageSize: 10,
@@ -543,13 +510,44 @@ export default {
       ],
       nowItem: {},
       nowName: "",
-      showDia: false,
       detailType: 1,
       showCode: false,
-      showAdd: true,
+      showAdd: false,
+      upBox: false,
+      upName: "",
     };
   },
   methods: {
+    //上传开始
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+    handleExceed(files, fileList) {
+      this.$message.warning(
+        `当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${
+          files.length + fileList.length
+        } 个文件`
+      );
+    },
+    beforeRemove(file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`);
+    },
+    //上传结束
+    confirm() {
+      this.showAdd = false;
+    },
+    addImgss() {
+      this.$message.success("Added successfully!");
+      this.upName = "";
+      this.$refs.upload.clearFiles();
+      this.upBox = false;
+    },
+    showUp() {
+      this.upBox = true;
+    },
     delWebSite(now) {
       console.log("1");
       this.addForm.websiteList = this.addForm.websiteList.filter((item) => {
@@ -565,12 +563,7 @@ export default {
     addMerchant() {
       this.showAdd = true;
     },
-    createQR() {
-      this.showCode = true;
-    },
-    changeType(num) {
-      this.detailType = num;
-    },
+
     changeTabs(name) {
       this.tabsName = name;
     },
@@ -578,8 +571,7 @@ export default {
       this.pageNum = val;
     },
     goView(item) {
-      this.nowItem = item;
-      this.showDia = true;
+      this.$router.push("/merchant-detail/666");
     },
     changeAble(item) {
       this.nowItem = item;
