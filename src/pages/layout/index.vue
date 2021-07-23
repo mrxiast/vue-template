@@ -128,4 +128,10 @@ export default {
     background-color: #f5f5f5;
   }
 }
+.module600 {
+  .el-dialog {
+    width: 600px;
+    background-color: #f5f5f5;
+  }
+}
 </style>

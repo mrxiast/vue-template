@@ -23,8 +23,10 @@
         </div>
       </div>
       <div>
-        <el-button>Search</el-button>
-        <el-button type="primary" @click="addPayroll">Add payroll</el-button>
+        <el-button type="primary">Search</el-button>
+        <el-button type="success" @click="createMesage"
+          >Create message</el-button
+        >
       </div>
     </div>
     <div class="bottom-box">
@@ -39,28 +41,24 @@
           }"
           :cell-style="{ 'text-align': 'center' }"
         >
-          <el-table-column fixed prop="id" label="Batch ID"> </el-table-column>
-          <el-table-column prop="date" label="Merchant legal name">
+          <el-table-column fixed prop="id" label="Last update">
           </el-table-column>
-          <el-table-column prop="amount" label="Branch ID"> </el-table-column>
-          <el-table-column prop="payer" label="Upload date"> </el-table-column>
-          <el-table-column prop="payee" label="Processed date">
+          <el-table-column prop="date" label="Message type"> </el-table-column>
+          <el-table-column prop="amount" label="Effect date-Start">
           </el-table-column>
+          <el-table-column prop="payer" label="Effect date-End">
+          </el-table-column>
+          <el-table-column prop="payee" label="Device"> </el-table-column>
           <el-table-column prop="status" label="Status"> </el-table-column>
-          <el-table-column prop="status" label="Upload by"> </el-table-column>
-          <el-table-column prop="status" label="Request amount(P)">
-          </el-table-column>
-          <el-table-column prop="status" label="Processed amount(P)">
-          </el-table-column>
-          <el-table-column prop="status" label="Failed amount(P)">
-          </el-table-column>
-          <el-table-column label="Action">
+          <el-table-column prop="status" label="Add by"> </el-table-column>
+          <el-table-column label="Action" width="240">
             <template slot-scope="scope">
-              <el-button @click="goDown(scope)" type="text" size="small"
-                >Download</el-button
+              <el-button @click="goView(scope)" size="small">View</el-button>
+              <el-button @click="goEdit(scope)" type="warning" size="small"
+                >Edit</el-button
               >
-              <el-button @click="goCancel(scope)" type="text" size="small"
-                >Cancel</el-button
+              <el-button @click="goEdit(scope)" type="danger" size="small"
+                >Block</el-button
               >
             </template>
           </el-table-column>
@@ -80,110 +78,88 @@
     </div>
     <div class="module-box-only">
       <el-dialog :visible.sync="showAdd" :close-on-click-modal="false">
-        <div v-if="addType === 1">
-          <div class="add-top-title">
-            <span>Please download payroll file format</span>
-            <span style="color: #409eff; cursor: pointer" @click="downFormat"
-              >Download format here!</span
-            >
-          </div>
-          <div>
-            <div class="up-title">Upload file here:</div>
+        <div>
+          <div class="base-style">
             <div>
-              <el-upload
-                class="upload-demo"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :before-remove="beforeRemove"
-                :limit="1"
-                :on-exceed="handleExceed"
+              <el-form
+                :model="ruleForm"
+                :rules="rules"
+                ref="ruleForm"
+                label-width="160px"
+                class="demo-ruleForm"
               >
-                <el-button size="small" type="primary">点击上传</el-button>
-              </el-upload>
+                <el-form-item label="Select message type:" prop="region">
+                  <el-select
+                    v-model="ruleForm.region"
+                    placeholder="请选择活动区域"
+                  >
+                    <el-option label="区域一" value="shanghai"></el-option>
+                    <el-option label="区域二" value="beijing"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Enter message title:" prop="region">
+                  <el-select
+                    v-model="ruleForm.region"
+                    placeholder="请选择活动区域"
+                  >
+                    <el-option label="区域一" value="shanghai"></el-option>
+                    <el-option label="区域二" value="beijing"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Message receiver:" prop="region">
+                  <el-select
+                    v-model="ruleForm.region"
+                    placeholder="请选择活动区域"
+                  >
+                    <el-option label="区域一" value="shanghai"></el-option>
+                    <el-option label="区域二" value="beijing"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Device:" prop="region">
+                  <el-select
+                    v-model="ruleForm.region"
+                    placeholder="请选择活动区域"
+                  >
+                    <el-option label="区域一" value="shanghai"></el-option>
+                    <el-option label="区域二" value="beijing"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-form>
             </div>
           </div>
-          <div class="sub-btn-box">
-            <el-button type="primary" @click="submit">Upload now</el-button>
+          <div class="base-style">
+            <div class="dia-title">Edit conetents:</div>
+            <div class="margin-top20">
+              <EditorBar @change="change" :value="value"></EditorBar>
+            </div>
           </div>
-        </div>
-        <div v-if="addType === 2">
-          <div class="table-title">Preview</div>
-          <div>
-            <el-table
-              style="width: 99%"
-              :data="tableData"
-              border
-              :header-cell-style="{
-                'text-align': 'center',
-                'background-color': '#eee',
-              }"
-              :cell-style="{ 'text-align': 'center' }"
+          <div style="text-align: center" class="margin-top20">
+            <el-button @click="showPreview">Preview</el-button>
+            <el-button type="primary" @click="confirmMessage"
+              >Confirm</el-button
             >
-              <el-table-column fixed prop="id" label="No."> </el-table-column>
-              <el-table-column prop="date" label="User name"> </el-table-column>
-              <el-table-column
-                prop="amount"
-                label="Mobile number/Fortune Pay account ID"
-              >
-              </el-table-column>
-              <el-table-column prop="payer" label="Amount"> </el-table-column>
-            </el-table>
-            <div class="sub-btn-box">
-              <el-button @click="cancle">Cancel</el-button>
-              <el-button type="primary" @click="PreComfirm">Confirm</el-button>
-            </div>
           </div>
         </div>
-        <div v-if="addType === 3">
-          <div class="type3-icon">
-            <i class="el-icon-warning"></i>
-          </div>
-          <div class="type3-title">
-            Data not fount for below users,please adk the users to register
-            Fortune Pay account or enter the correct mobild number
-          </div>
-          <div class="type3-list">
-            <div class="type3-item" v-for="i in 3" :key="i">
-              <div>NO.1</div>
-              <div>Olivia wang</div>
-              <div>1384574489</div>
-              <div>600</div>
-            </div>
-          </div>
-          <div style="text-align: center">Go on processing the valid data?</div>
-          <div class="type3-btn">
-            <el-button @click="cancle">Cancel</el-button>
-            <el-button type="primary" @click="process">Process</el-button>
-          </div>
-        </div>
-        <div v-if="addType === 4">
+        <el-dialog width="40%" :visible.sync="showPreviewDia" append-to-body>
           <div>
-            <el-radio v-model="radio" label="1">Processing now</el-radio>
-            <el-radio v-model="radio" label="2">Schedule a date</el-radio>
+            {{ value }}
           </div>
-          <div class="select-time" v-if="radio === '2'">
-            <el-date-picker
-              v-model="scheduleDate"
-              type="datetime"
-              placeholder="Select Time"
-            >
-            </el-date-picker>
-          </div>
-          <div class="type3-btn">
-            <el-button type="primary" @click="confirmEnd">Confirm</el-button>
-          </div>
-        </div>
+        </el-dialog>
       </el-dialog>
     </div>
   </div>
 </template>
 
 <script>
+import EditorBar from "@/pages/components/wang-editor";
 export default {
+  components: { EditorBar },
   data() {
     return {
-      radio: "1",
+      value: "这是默认的哦",
+      detail: "",
+      showPreviewDia: false,
+      isClear: false,
       showAdd: false,
       pageNum: 1,
       pageSize: 10,
@@ -272,63 +248,32 @@ export default {
           status: 1,
         },
       ],
-      addType: 1,
       scheduleDate: "",
+      ruleForm: {},
+      rules: {},
     };
   },
   created() {},
   methods: {
-    confirmEnd() {
-      if (this.radio === 1) {
-        this.scheduleDate = "";
-      }
-      this.addType = 1;
+    confirmMessage() {
       this.showAdd = false;
+      this.$message.success("Successfly!");
     },
-    process() {
-      this.addType = 4;
+    showPreview() {
+      this.showPreviewDia = true;
     },
-    cancle() {
-      this.addType = 1;
-      this.showAdd = false;
+    change(val) {
+      console.log(val);
     },
-    PreComfirm() {
-      this.addType = 3;
-    },
-    submit() {
-      this.$message.success("success");
-      this.addType = 2;
-    },
-    //图片上传开始
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePreview(file) {
-      console.log(file);
-    },
-    handleExceed(files, fileList) {
-      this.$message.warning(
-        `当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${
-          files.length + fileList.length
-        } 个文件`
-      );
-    },
-    beforeRemove(file, fileList) {
-      return this.$confirm(`确定移除 ${file.name}？`);
-    },
-    //图片上传结束
-    downFormat() {
-      console.log("点击下载");
-    },
-    addPayroll() {
+    createMesage() {
       this.showAdd = true;
     },
-    goDown() {},
-    goCancel() {},
     goView(item) {
-      this.showDia = true;
+      this.showAdd = true;
     },
-    changePage(val) {},
+    changePage(val) {
+      this.pageNum = val;
+    },
   },
 };
 </script>

@@ -20,7 +20,8 @@
     "vue-print-nb": "^1.7.4",
     "vue-router": "^3.0.1",
     "vuex": "^3.6.2",
-    "vuex-persistedstate": "^4.0.0-beta.3"
+    "vuex-persistedstate": "^4.0.0-beta.3",
+    "wangeditor": "^4.7.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
