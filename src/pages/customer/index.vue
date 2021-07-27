@@ -82,19 +82,19 @@
               :class="listType === 1 ? 'default-box is-active' : 'default-box'"
               @click="changeType(1)"
             >
-              Scan to pay
+              Profile
             </div>
             <div
               :class="listType === 2 ? 'default-box is-active' : 'default-box'"
               @click="changeType(2)"
             >
-              Transfer
+              Transactions
             </div>
             <div
               :class="listType === 3 ? 'default-box is-active' : 'default-box'"
               @click="changeType(3)"
             >
-              Ang Pao
+              Friends invited list
             </div>
           </div>
           <div v-if="listType === 1">
@@ -486,7 +486,7 @@ export default {
     goView(item) {
       this.nowItem = item;
       this.dataUserType = this.nowItem.userType;
-      this.showDia = true;
+      this.$router.push("/customer-detail/" + this.nowItem.id);
     },
     changeBlock() {
       this.blockDia = false;

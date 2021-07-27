@@ -110,6 +110,14 @@ const router = new Router({
             name: 'Customer'
           },
           component: () => import("@/pages/customer")
+        },
+        {
+          path: '/customer-detail/:id',
+          name: 'Customer',
+          meta: {
+            name: 'Customer'
+          },
+          component: () => import("@/pages/customer/detail")
         }, {
           path: '/merchant',
           name: 'Merchant',
@@ -170,7 +178,162 @@ const router = new Router({
             name: 'Payroll'
           },
           component: () => import("@/pages/service/payroll")
+        }, {
+          path: '/marketing/ang-pao',
+          name: 'Ang Pao',
+          meta: {
+            name: 'Ang Pao'
+          },
+          component: () => import("@/pages/marketing/ang-pao")
+        }, {
+          path: '/marketing/cockfight',
+          name: 'Cockfight',
+          meta: {
+            name: 'Cockfight'
+          },
+          component: () => import("@/pages/marketing/cockfight")
+        }, {
+          path: '/marketing/fortune-wheel',
+          name: 'Fortune Wheel',
+          meta: {
+            name: 'Fortune Wheel'
+          },
+          component: () => import("@/pages/marketing/fortune-wheel")
         },
+        {
+          path: '/finance/cash-in',
+          name: 'Cash in',
+          meta: {
+            name: 'Cash in'
+          },
+          component: () => import("@/pages/finance/cash-in")
+        }, {
+          path: '/finance/cash-out',
+          name: 'Cash out',
+          meta: {
+            name: 'Cash out'
+          },
+          component: () => import("@/pages/finance/cash-out")
+        }, {
+          path: '/finance/finance-report',
+          name: 'Finance report',
+          meta: {
+            name: 'Finance report'
+          },
+          component: () => import("@/pages/finance/finance-report")
+        }, {
+          path: '/system/role-management',
+          name: 'Portal role management',
+          meta: {
+            name: 'Portal role management'
+          },
+          component: () => import("@/pages/system/management/role-management")
+        }, {
+          path: '/system/user-management',
+          name: 'Portal user management',
+          meta: {
+            name: 'Portal user management'
+          },
+          component: () => import("@/pages/system/management/user-management")
+        }, {
+          path: '/system/configuration/mrd',
+          name: 'Configuration',
+          meta: {
+            name: 'Configuration'
+          },
+          component: () => import("@/pages/system/configuration/mrd")
+        }, {
+          path: '/system/configuration/commission',
+          name: 'Commission',
+          meta: {
+            name: 'Commission'
+          },
+          component: () => import("@/pages/system/configuration/commission")
+        }, {
+          path: '/system/configuration/service-charge',
+          name: 'Service charge',
+          meta: {
+            name: 'Service charge'
+          },
+          component: () => import("@/pages/system/configuration/service-charge")
+        }, {
+          path: '/system/configuration/transaction-limits',
+          name: 'Transaction limits',
+          meta: {
+            name: 'Transaction limits'
+          },
+          component: () => import("@/pages/system/configuration/transaction-limits")
+        }, {
+          path: '/system/message-center',
+          name: 'Message center',
+          meta: {
+            name: 'Message center'
+          },
+          component: () => import("@/pages/system/message-center")
+        }, {
+          path: '/system/approval-center/customer-kyc',
+          name: 'Customer KYC',
+          meta: {
+            name: 'Customer KYC'
+          },
+          component: () => import("@/pages/system/approval-center/customer-kyc")
+        },
+        {
+          path: '/system/approval-center/merchant-cash-in',
+          name: 'Merchant cash in',
+          meta: {
+            name: 'Merchant cash in'
+          },
+          component: () => import("@/pages/system/approval-center/merchant-cash-in")
+        },
+        {
+          path: '/system/approval-center/merchant-cash-out',
+          name: 'Merchant cash out',
+          meta: {
+            name: 'Merchant cash out'
+          },
+          component: () => import("@/pages/system/approval-center/merchant-cash-out")
+        },
+        {
+          path: '/system/approval-center/merchant-approval',
+          name: 'Merchant approval',
+          meta: {
+            name: 'Merchant approval'
+          },
+          component: () => import("@/pages/system/approval-center/merchant-approval")
+        },
+        {
+          path: '/system/approval-center/branch-approval',
+          name: 'Branch approval',
+          meta: {
+            name: 'Branch approval'
+          },
+          component: () => import("@/pages/system/approval-center/branch-approval")
+        },
+        {
+          path: '/system/approval-center/partner-approval',
+          name: 'Partner approval',
+          meta: {
+            name: 'Partner approval'
+          },
+          component: () => import("@/pages/system/approval-center/partner-approval")
+        },
+        {
+          path: '/system/approval-center/ctbc-approval',
+          name: 'CTBC approval',
+          meta: {
+            name: 'CTBC approval'
+          },
+          component: () => import("@/pages/system/approval-center/ctbc-approval")
+        }, {
+          path: '/system/biller-management',
+          name: 'Biller management',
+          meta: {
+            name: 'Biller management'
+          },
+          component: () => import("@/pages/system/biller-management")
+        },
+
 
         {
           path: '/test2-1',

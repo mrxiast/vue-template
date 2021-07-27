@@ -55,13 +55,90 @@ const navList = [
     url: "/system",
     children: [
       {
-        title: "Check my profile",
+        title: "Portal user management",
         icon: "el-icon-menu",
-        url: "/system/check-my-profile",
+        url: "/system/management",
+        children: [
+          {
+            title: "Portal role mangement",
+            icon: "el-icon-menu",
+            url: "/system/role-management",
+          },
+          {
+            title: "Portal user mangement",
+            icon: "el-icon-menu",
+            url: "/system/user-management",
+          }
+        ],
       }, {
-        title: "Change login passwords",
+        title: "Configuration",
         icon: "el-icon-menu",
-        url: "/system/change-login-passwords",
+        url: "/system/configuration",
+        children: [
+          {
+            title: "MDR",
+            icon: "el-icon-menu",
+            url: "/system/configuration/mrd",
+          }, {
+            title: "Commission",
+            icon: "el-icon-menu",
+            url: "/system/configuration/commission",
+          }, {
+            title: "Service charge",
+            icon: "el-icon-menu",
+            url: "/system/configuration/service-charge",
+          }, {
+            title: "Transaction limits",
+            icon: "el-icon-menu",
+            url: "/system/configuration/transaction-limits",
+          },
+
+        ]
+      }, {
+        title: "Approval center",
+        icon: "el-icon-menu",
+        url: "/system/approval-center",
+        children: [
+          {
+            title: "Customer KYC",
+            icon: "el-icon-menu",
+            url: "/system/approval-center/customer-kyc",
+          }, {
+            title: "Merchant cash in",
+            icon: "el-icon-menu",
+            url: "/system/approval-center/merchant-cash-in",
+          }, {
+            title: "Merchant cash out",
+            icon: "el-icon-menu",
+            url: "/system/approval-center/merchant-cash-out",
+          }, {
+            title: "Merchant approval",
+            icon: "el-icon-menu",
+            url: "/system/approval-center/merchant-approval",
+          }, {
+            title: "Branch approval",
+            icon: "el-icon-menu",
+            url: "/system/approval-center/branch-approval",
+          }, {
+            title: "Partner approval",
+            icon: "el-icon-menu",
+            url: "/system/approval-center/partner-approval",
+          }, {
+            title: "CTBC approval",
+            icon: "el-icon-menu",
+            url: "/system/approval-center/ctbc-approval",
+          },
+
+
+        ]
+      }, {
+        title: "Message center",
+        icon: "el-icon-menu",
+        url: "/system/message-center",
+      }, {
+        title: "Biller management",
+        icon: "el-icon-menu",
+        url: "/system/biller-management",
       },
 
     ]
@@ -82,6 +159,46 @@ const navList = [
         title: "Payroll",
         icon: "el-icon-menu",
         url: "/service/payroll",
+      },
+
+    ]
+  }, {
+    title: "Marketing",
+    icon: "el-icon-menu",
+    url: "/marketing",
+    children: [
+      {
+        title: "Ang Pao",
+        icon: "el-icon-menu",
+        url: "/marketing/ang-pao",
+      }, {
+        title: "Cockfight",
+        icon: "el-icon-menu",
+        url: "/marketing/cockfight",
+      }, {
+        title: "Fortune Wheel",
+        icon: "el-icon-menu",
+        url: "/marketing/fortune-wheel",
+      },
+
+    ]
+  }, {
+    title: "Finance",
+    icon: "el-icon-menu",
+    url: "/finance",
+    children: [
+      {
+        title: "Cash in",
+        icon: "el-icon-menu",
+        url: "/finance/cash-in",
+      }, {
+        title: "Cash out",
+        icon: "el-icon-menu",
+        url: "/finance/cash-out",
+      }, {
+        title: "Finance report",
+        icon: "el-icon-menu",
+        url: "/finance/finance-report",
       },
 
     ]

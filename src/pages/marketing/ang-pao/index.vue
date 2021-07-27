@@ -2,12 +2,6 @@
   <div class="t-container">
     <div class="top-box">
       <div class="left-box">
-        <el-input
-          style="width: 300px"
-          v-model="searchId"
-          placeholder="Merchant ID/branch ID"
-        ></el-input>
-
         <div class="date-box">
           <div class="data-box-style">Select date</div>
           <div class="box-date">
@@ -23,13 +17,30 @@
         </div>
       </div>
       <div>
-        <el-button>Search</el-button>
-        <el-button type="primary" @click="addPayroll">Add payroll</el-button>
+        <el-button type="primary" @click="search">Search</el-button>
+        <el-button type="success" @click="createActive"
+          >Create Ang Pao activity</el-button
+        >
       </div>
     </div>
     <div class="bottom-box">
+      <div class="bottom-top-box">
+        <div
+          :class="listType === 1 ? 'default-box is-active' : 'default-box'"
+          @click="changeType(1)"
+        >
+          Activity list
+        </div>
+        <div
+          :class="listType === 2 ? 'default-box is-active' : 'default-box'"
+          @click="changeType(2)"
+        >
+          Ang Pao statistics
+        </div>
+      </div>
       <div class="list-box">
         <el-table
+          v-if="listType === 1"
           style="width: 99%"
           :data="tableData"
           border
@@ -39,28 +50,57 @@
           }"
           :cell-style="{ 'text-align': 'center' }"
         >
-          <el-table-column fixed prop="id" label="Batch ID"> </el-table-column>
-          <el-table-column prop="date" label="Merchant legal name">
+          <el-table-column prop="id" label="Promition period start">
           </el-table-column>
-          <el-table-column prop="amount" label="Branch ID"> </el-table-column>
-          <el-table-column prop="payer" label="Upload date"> </el-table-column>
-          <el-table-column prop="payee" label="Processed date">
+          <el-table-column prop="date" label="Promotion period end">
+          </el-table-column>
+          <el-table-column prop="amount" label="Reward amount/Per customer">
+          </el-table-column>
+          <el-table-column prop="payer" label="Expiration hours last">
+          </el-table-column>
+          <el-table-column prop="payee" label="Double amount">
+          </el-table-column>
+          <el-table-column prop="status" label="Discription"> </el-table-column>
+          <el-table-column prop="status" label="Maximum reward amount/Day(P)">
           </el-table-column>
           <el-table-column prop="status" label="Status"> </el-table-column>
-          <el-table-column prop="status" label="Upload by"> </el-table-column>
-          <el-table-column prop="status" label="Request amount(P)">
+          <el-table-column label="Action">
+            <template slot-scope="scope">
+              <el-button @click="goEdit(scope.row)" type="text" size="small"
+                >Edit</el-button
+              >
+              <el-button
+                @click="goSwitch(scope.row)"
+                type="text"
+                size="small"
+                >{{
+                  scope.row.status === 1 ? "Switch off" : "Switch on"
+                }}</el-button
+              >
+            </template>
           </el-table-column>
-          <el-table-column prop="status" label="Processed amount(P)">
+        </el-table>
+        <el-table
+          v-if="listType === 2"
+          style="width: 99%"
+          :data="tableData"
+          border
+          :header-cell-style="{
+            'text-align': 'center',
+            'background-color': '#eee',
+          }"
+          :cell-style="{ 'text-align': 'center' }"
+        >
+          <el-table-column prop="date" label="Date"> </el-table-column>
+          <el-table-column prop="date" label="Total send(P)"> </el-table-column>
+          <el-table-column prop="amount" label="Total claimed(P)">
           </el-table-column>
-          <el-table-column prop="status" label="Failed amount(P)">
+          <el-table-column prop="payer" label="Total Expired(P)">
           </el-table-column>
           <el-table-column label="Action">
             <template slot-scope="scope">
-              <el-button @click="goDown(scope)" type="text" size="small"
+              <el-button @click="down(scope.row)" type="text" size="small"
                 >Download</el-button
-              >
-              <el-button @click="goCancel(scope)" type="text" size="small"
-                >Cancel</el-button
               >
             </template>
           </el-table-column>
@@ -80,100 +120,61 @@
     </div>
     <div class="module-box-only">
       <el-dialog :visible.sync="showAdd" :close-on-click-modal="false">
-        <div v-if="addType === 1">
-          <div class="add-top-title">
-            <span>Please download payroll file format</span>
-            <span style="color: #409eff; cursor: pointer" @click="downFormat"
-              >Download format here!</span
-            >
-          </div>
-          <div>
-            <div class="up-title">Upload file here:</div>
-            <div>
-              <el-upload
-                class="upload-demo"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :before-remove="beforeRemove"
-                :limit="1"
-                :on-exceed="handleExceed"
-              >
-                <el-button size="small" type="primary">点击上传</el-button>
-              </el-upload>
-            </div>
-          </div>
-          <div class="sub-btn-box">
-            <el-button type="primary" @click="submit">Upload now</el-button>
-          </div>
-        </div>
-        <div v-if="addType === 2">
-          <div class="table-title">Preview</div>
-          <div>
-            <el-table
-              style="width: 99%"
-              :data="tableData"
-              border
-              :header-cell-style="{
-                'text-align': 'center',
-                'background-color': '#eee',
-              }"
-              :cell-style="{ 'text-align': 'center' }"
-            >
-              <el-table-column fixed prop="id" label="No."> </el-table-column>
-              <el-table-column prop="date" label="User name"> </el-table-column>
-              <el-table-column
-                prop="amount"
-                label="Mobile number/Fortune Pay account ID"
-              >
-              </el-table-column>
-              <el-table-column prop="payer" label="Amount"> </el-table-column>
-            </el-table>
-            <div class="sub-btn-box">
-              <el-button @click="cancle">Cancel</el-button>
-              <el-button type="primary" @click="PreComfirm">Confirm</el-button>
-            </div>
-          </div>
-        </div>
-        <div v-if="addType === 3">
-          <div class="type3-icon">
-            <i class="el-icon-warning"></i>
-          </div>
-          <div class="type3-title">
-            Data not fount for below users,please adk the users to register
-            Fortune Pay account or enter the correct mobild number
-          </div>
-          <div class="type3-list">
-            <div class="type3-item" v-for="i in 3" :key="i">
-              <div>NO.1</div>
-              <div>Olivia wang</div>
-              <div>1384574489</div>
-              <div>600</div>
-            </div>
-          </div>
-          <div style="text-align: center">Go on processing the valid data?</div>
-          <div class="type3-btn">
-            <el-button @click="cancle">Cancel</el-button>
-            <el-button type="primary" @click="process">Process</el-button>
-          </div>
-        </div>
-        <div v-if="addType === 4">
-          <div>
-            <el-radio v-model="radio" label="1">Processing now</el-radio>
-            <el-radio v-model="radio" label="2">Schedule a date</el-radio>
-          </div>
-          <div class="select-time" v-if="radio === '2'">
+        <el-form
+          :model="ruleForm"
+          :rules="rules"
+          ref="ruleForm"
+          label-width="180px"
+          class="demo-ruleForm"
+        >
+          <el-form-item label="active discription" prop="name">
+            <el-input v-model="ruleForm.discription"></el-input>
+          </el-form-item>
+          <el-form-item label="promotion perion">
             <el-date-picker
-              v-model="scheduleDate"
-              type="datetime"
-              placeholder="Select Time"
+              v-model="ruleForm.time"
+              type="datetimerange"
+              range-separator="To"
+              start-placeholder="Start time"
+              end-placeholder="End time"
             >
             </el-date-picker>
+          </el-form-item>
+          <el-form-item label="account level" prop="region">
+            <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="amount to reward" prop="desc">
+            <el-input
+              type="textarea"
+              v-model="ruleForm.desc"
+              placeholder="The amount range must fall in 1P-10Php"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="expiration date(Hours)" prop="desc">
+            <el-input v-model="ruleForm.desc"></el-input>
+          </el-form-item>
+          <el-form-item label="Referring to others" prop="delivery">
+            <el-switch v-model="ruleForm.delivery"></el-switch>
+          </el-form-item>
+          <el-form-item label="successful referral" prop="region">
+            <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="maximum amount" prop="desc">
+            <el-input v-model="ruleForm.desc"></el-input>
+          </el-form-item>
+
+          <div style="text-align: center">
+            <el-button type="primary" @click="submitForm('ruleForm')"
+              >Confirm</el-button
+            >
           </div>
-          <div class="type3-btn">
-            <el-button type="primary" @click="confirmEnd">Confirm</el-button>
-          </div>
-        </div>
+        </el-form>
       </el-dialog>
     </div>
   </div>
@@ -183,12 +184,14 @@
 export default {
   data() {
     return {
+      ruleForm: {},
+      rules: {},
+      listType: 1,
       radio: "1",
       showAdd: false,
       pageNum: 1,
       pageSize: 10,
       total: 1000,
-      searchId: "",
       times: "",
       tableData: [
         {
@@ -205,7 +208,7 @@ export default {
           amount: "20",
           payer: "01",
           payee: "02",
-          status: 1,
+          status: 2,
         },
         {
           id: "1",
@@ -274,10 +277,17 @@ export default {
       ],
       addType: 1,
       scheduleDate: "",
+      nowItem: {},
+      isEdit: false,
     };
   },
   created() {},
   methods: {
+    down() {},
+    search() {},
+    changeType(num) {
+      this.listType = num;
+    },
     confirmEnd() {
       if (this.radio === 1) {
         this.scheduleDate = "";
@@ -320,11 +330,16 @@ export default {
     downFormat() {
       console.log("点击下载");
     },
-    addPayroll() {
+    createActive() {
       this.showAdd = true;
     },
-    goDown() {},
-    goCancel() {
+    goEdit(item) {
+      this.nowItem = item;
+      this.isEdit = true;
+      this.showAdd = true;
+    },
+    goSwitch(item) {
+      this.nowItem = item;
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -343,10 +358,9 @@ export default {
           });
         });
     },
-    goView(item) {
-      this.showDia = true;
+    changePage(val) {
+      this.pageNum = val;
     },
-    changePage(val) {},
   },
 };
 </script>
