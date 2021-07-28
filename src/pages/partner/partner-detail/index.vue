@@ -2,66 +2,80 @@
   <div class="container">
     <div class="module-box">
       <div>
-        <div class="dia-title">Merchant name: No.1 store</div>
+        <div class="dia-title">Partner name:7777777</div>
         <div class="base-style tabs-box">
           <div
-            :class="detailType === 1 ? 'default-box is-active' : 'default-box'"
+            :class="listType === 1 ? 'default-box is-active' : 'default-box'"
             @click="changeType(1)"
           >
             Profile
           </div>
           <div
-            :class="detailType === 2 ? 'default-box is-active' : 'default-box'"
+            :class="listType === 2 ? 'default-box is-active' : 'default-box'"
             @click="changeType(2)"
           >
             Files
           </div>
         </div>
-        <div v-if="detailType === 1">
+        <div v-if="listType === 1">
           <div class="base-style">
-            <div class="base-title">Merchantprofile</div>
+            <div class="base-title">Profile</div>
             <div class="mer-one-box">
               <div class="mer-one-one-box" style="display: flex">
                 <div class="mer-one-one-left-box">
                   <div class="mer-ava">
                     <img src="@/static/logo.png" alt="" />
                   </div>
-                  <div class="mer-title">Merchant photo</div>
+                  <div class="mer-title"></div>
                 </div>
                 <div class="table-content">
                   <div class="table-content-item">
-                    <div class="table-content-item-title">
-                      Merchant legal name
-                    </div>
+                    <div class="table-content-item-title">Partner name</div>
+                    <div class="table-content-item-value">xxxxxxxxxx</div>
+                    <div class="table-content-item-title">Partner ID</div>
+                    <div class="table-content-item-value">25555</div>
+                  </div>
+                  <div class="table-content-item">
+                    <div class="table-content-item-title">Partner type</div>
+                    <div class="table-content-item-value">xxxxxxxxxx</div>
+                    <div class="table-content-item-title">Partner level</div>
+                    <div class="table-content-item-value">25555</div>
+                  </div>
+                  <div class="table-content-item">
+                    <div class="table-content-item-title">Websiste</div>
+                    <div class="table-content-item-value">xxxxxxxxxx</div>
+                    <div class="table-content-item-title">First contact</div>
+                    <div class="table-content-item-value">25555</div>
+                  </div>
+                  <div class="table-content-item">
+                    <div class="table-content-item-title">Mobile</div>
+                    <div class="table-content-item-value">xxxxxxxxxx</div>
+                    <div class="table-content-item-title">Email</div>
+                    <div class="table-content-item-value">25555</div>
+                  </div>
+                  <div class="table-content-item">
+                    <div class="table-content-item-title">Merchant enabled</div>
                     <div class="table-content-item-value">xxxxxxxxxx</div>
                     <div class="table-content-item-title">Merchant ID</div>
                     <div class="table-content-item-value">25555</div>
                   </div>
                   <div class="table-content-item">
-                    <div class="table-content-item-title">Mobile number</div>
+                    <div class="table-content-item-title">From channels</div>
                     <div class="table-content-item-value">xxxxxxxxxx</div>
-                    <div class="table-content-item-title">Email address</div>
+                    <div class="table-content-item-title">Channel name</div>
                     <div class="table-content-item-value">25555</div>
                   </div>
                   <div class="table-content-item">
-                    <div class="table-content-item-title">Type</div>
+                    <div class="table-content-item-title">Added date</div>
                     <div class="table-content-item-value">xxxxxxxxxx</div>
-                    <div class="table-content-item-title">Website</div>
+                    <div class="table-content-item-title">Approval date</div>
                     <div class="table-content-item-value">25555</div>
                   </div>
                   <div class="table-content-item">
-                    <div class="table-content-item-title">Merchant level</div>
+                    <div class="table-content-item-title">Status</div>
                     <div class="table-content-item-value">xxxxxxxxxx</div>
-                    <div class="table-content-item-title">
-                      Name of first contact
-                    </div>
-                    <div class="table-content-item-value">25555</div>
-                  </div>
-                  <div class="table-content-item">
-                    <div class="table-content-item-title">Partner enable</div>
-                    <div class="table-content-item-value">xxxxxxxxxx</div>
-                    <div class="table-content-item-title">Settlement date</div>
-                    <div class="table-content-item-value">25555</div>
+                    <div class="table-content-item-title"></div>
+                    <div class="table-content-item-value"></div>
                   </div>
                 </div>
               </div>
@@ -88,12 +102,26 @@
                     <div class="table-content-item-value">25555</div>
                   </div>
                   <div class="table-content-item">
-                    <div class="table-content-item-title">Type</div>
-                    <div class="table-content-item-value" style="width: 1200px">
+                    <div class="table-content-item-title">Address</div>
+                    <div class="table-content-item-value" style="width: 1100px">
                       xxxxxxxxxx
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="commission-box">
+              <div style="margin-right: 10px">Commission</div>
+              <div>
+                <el-select v-model="commissionVal" placeholder="请选择">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  >
+                  </el-option>
+                </el-select>
               </div>
             </div>
           </div>
@@ -101,50 +129,10 @@
             <div class="base-title">Asset summary</div>
             <div class="table-content" style="margin-left: 220px">
               <div class="table-content-item">
-                <div class="table-content-item-title">Region</div>
+                <div class="table-content-item-title">Wallet balance</div>
                 <div class="table-content-item-value">xxxxxxxxxx</div>
-                <div class="table-content-item-title">Province</div>
+                <div class="table-content-item-title">Pre-seposit balance</div>
                 <div class="table-content-item-value">25555</div>
-              </div>
-              <div class="table-content-item">
-                <div class="table-content-item-title">Brangay</div>
-                <div class="table-content-item-value">xxxxxxxxxx</div>
-                <div class="table-content-item-title">branch city</div>
-                <div class="table-content-item-value">25555</div>
-              </div>
-            </div>
-          </div>
-          <div class="base-style">
-            <div class="base-title">Quick operations</div>
-            <div class="quick-content">
-              <el-button @click="createQR">Genrate Merchant QR</el-button>
-              <div class="select-box">
-                <div class="select-box-title">Commission</div>
-                <div>
-                  <el-select v-model="commissionVal" placeholder="请选择">
-                    <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
-                    >
-                    </el-option>
-                  </el-select>
-                </div>
-              </div>
-              <div class="select-box">
-                <div class="select-box-title">MDR</div>
-                <div>
-                  <el-select v-model="commissionVal" placeholder="请选择">
-                    <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
-                    >
-                    </el-option>
-                  </el-select>
-                </div>
               </div>
             </div>
           </div>
@@ -154,9 +142,6 @@
               style="display: flex; justify-content: space-between"
             >
               <span>Bank information</span>
-              <!-- <span style="font-weight: 400; cursor: pointer; color: #409eff"
-                  >+ Add new bank</span
-                > -->
             </div>
             <div
               class="table-content"
@@ -164,38 +149,38 @@
             >
               <div class="table-content-item">
                 <div class="table-content-item-title">Bank Name</div>
-                <div class="table-content-item-value" style="width: 1200px">
+                <div class="table-content-item-value" style="width: 1100px">
                   xxxxxxxxxx
                 </div>
               </div>
               <div class="table-content-item">
                 <div class="table-content-item-title">Bank Branch</div>
-                <div class="table-content-item-value" style="width: 1200px">
+                <div class="table-content-item-value" style="width: 1100px">
                   xxxxxxxxxx
                 </div>
               </div>
               <div class="table-content-item">
                 <div class="table-content-item-title">Account Name</div>
-                <div class="table-content-item-value" style="width: 1200px">
+                <div class="table-content-item-value" style="width: 1100px">
                   xxxxxxxxxx
                 </div>
               </div>
               <div class="table-content-item">
                 <div class="table-content-item-title">Account Number</div>
-                <div class="table-content-item-value" style="width: 1200px">
+                <div class="table-content-item-value" style="width: 1100px">
                   xxxxxxxxxx
                 </div>
               </div>
               <div class="table-content-item">
                 <div class="table-content-item-title">Bank service fee</div>
-                <div class="table-content-item-value" style="width: 1200px">
+                <div class="table-content-item-value" style="width: 1100px">
                   xxxxxxxxxx
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div v-if="detailType === 2">
+        <div v-if="listType === 2">
           <div class="base-style" style="display: flex; flex-wrap: wrap">
             <div class="file-box" v-for="i in 3" :key="i">
               <div class="file-img">
@@ -241,8 +226,9 @@
 export default {
   data() {
     return {
+      listType: 1,
       showCode: false,
-      detailType: 1,
+      listType: 1,
       commissionVal: "",
       options: [
         {
@@ -273,7 +259,7 @@ export default {
       this.showCode = true;
     },
     changeType(num) {
-      this.detailType = num;
+      this.listType = num;
     },
   },
 };

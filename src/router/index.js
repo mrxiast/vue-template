@@ -51,14 +51,6 @@ const router = new Router({
           },
           component: () => import("@/pages/dashboard")
         },
-        // {
-        //   path: '/transactions/e-wallet',
-        //   name: 'E-Wallet',
-        //   meta: {
-        //     name: 'E-Wallet'
-        //   },
-        //   component: () => import("@/pages/transactions/e-wallet")
-        // },
         {
           path: '/transactions/e-wallet',
           name: 'E-Wallet',
@@ -132,6 +124,27 @@ const router = new Router({
             name: 'Merchant Detail'
           },
           component: () => import("@/pages/merchant/merchant-detail")
+        }, {
+          path: '/branch-detail/:id',
+          name: 'Brahch Detail',
+          meta: {
+            name: 'Brahch Detail'
+          },
+          component: () => import("@/pages/merchant/branch-detail")
+        }, {
+          path: '/partner',
+          name: 'Partner',
+          meta: {
+            name: 'Partner'
+          },
+          component: () => import("@/pages/partner/index")
+        }, {
+          path: '/partner-detail/:id',
+          name: 'Partner Detail',
+          meta: {
+            name: 'Partner Detail'
+          },
+          component: () => import("@/pages/partner/partner-detail")
         },
         {
           path: '/user-center',

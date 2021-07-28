@@ -34,7 +34,9 @@
       </div>
       <div class="button-box">
         <el-button type="primary">Search</el-button>
-        <el-button type="danger" @click="addMerchant">+ Add Merchant</el-button>
+        <el-button type="danger" @click="addMerchant">{{
+          tabsName === "merchant" ? "+ Add Merchant" : "+ Add Branch"
+        }}</el-button>
       </div>
     </div>
     <div class="table-box">
@@ -89,7 +91,7 @@
     </div>
     <div class="module-box">
       <el-dialog :visible.sync="showAdd" :close-on-click-modal="false">
-        <div class="add-content">
+        <div class="add-content" v-if="tabsName === 'merchant'">
           <div class="add-left">
             <img src="@/static/logo.png" alt="" />
             <el-button class="add-btn" size="small">Browse image</el-button>
@@ -416,27 +418,210 @@
             </div>
           </div>
         </div>
-        <el-dialog width="30%" :visible.sync="upBox" append-to-body>
-          <div>Please enter file name</div>
-          <el-input v-model="upName" class="up-name"></el-input>
-          <el-upload
-            ref="upload"
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :before-remove="beforeRemove"
-            multiple
-            :limit="1"
-            :on-exceed="handleExceed"
-          >
-            <el-button size="small" type="primary">Upload file here</el-button>
-            <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
-          </el-upload>
-          <div class="con-btn">
-            <el-button type="primary" @click="addImgss">Confirm</el-button>
+        <div class="add-content" v-if="tabsName === 'branch'">
+          <div class="add-left">
+            <img src="@/static/logo.png" alt="" />
+            <el-button class="add-btn" size="small">Browse image</el-button>
+            <div>
+              *Recommended Size:<br />
+              Minimum 250*250
+            </div>
           </div>
-        </el-dialog>
+          <div>
+            <div class="add-right base-style">
+              <div class="base-title">Basic information</div>
+              <div class="form-box">
+                <div class="input-item">
+                  <div class="input-item-title">Select merchant</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Enter branch name</div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.dbaname"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Enter mobile number</div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.firstName"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Enter e-mail address</div>
+                  <div class="input-item-input">
+                    <el-input
+                      v-model="addForm.email"
+                      placeholder="Enter merchant DBA name"
+                    />
+                  </div>
+                </div>
+
+                <div class="input-item">
+                  <div class="input-item-title">Branch type</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+
+                <div class="input-item">
+                  <div class="input-item-title">Settlement date</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parLevel" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="add-right base-style">
+              <div class="base-title">Merchant location</div>
+              <div class="form-box">
+                <div class="input-item">
+                  <div class="input-item-title">Select region</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Select province</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Select barangay</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Select city</div>
+                  <div class="input-item-input">
+                    <el-select v-model="addForm.parType" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      >
+                      </el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Enter postal code</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.legalname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title"></div>
+                  <div class="input-item-input"></div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Enter street address</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="add-right base-style">
+              <div class="base-title">Bank details</div>
+              <div class="form-box">
+                <div class="input-item">
+                  <div class="input-item-title">Bank Name</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.legalname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Branch name</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Account Name</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Account Number</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+                <div class="input-item">
+                  <div class="input-item-title">Bank service fee</div>
+                  <div class="input-item-input">
+                    <el-input v-model="addForm.dbaname" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="con-btn">
+              <el-button type="primary" @click="confirm">Confirm</el-button>
+            </div>
+          </div>
+        </div>
       </el-dialog>
     </div>
   </div>
@@ -571,7 +756,11 @@ export default {
       this.pageNum = val;
     },
     goView(item) {
-      this.$router.push("/merchant-detail/666");
+      if (this.tabsName === "merchant") {
+        this.$router.push("/merchant-detail/666");
+      } else {
+        this.$router.push("/branch-detail/666");
+      }
     },
     changeAble(item) {
       this.nowItem = item;

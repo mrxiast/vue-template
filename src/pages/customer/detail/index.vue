@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="container">
       <div class="base-style tabs-box">
         <div
           :class="listType === 1 ? 'default-box is-active' : 'default-box'"
@@ -294,7 +294,20 @@ export default {
   data() {
     return {
       listType: 1,
+      pageNum: 1,
+      pageSize: 10,
+      total: 1000,
+      searchName: "",
+      tableData: [],
     };
+  },
+  methods: {
+    changeType(num) {
+      this.listType = num;
+    },
+    changePage(val) {
+      this.pageNum = val;
+    },
   },
 };
 </script>

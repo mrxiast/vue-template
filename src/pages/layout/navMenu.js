@@ -50,6 +50,10 @@ const navList = [
     icon: "el-icon-menu",
     url: "/merchant",
   }, {
+    title: "Partner",
+    icon: "el-icon-menu",
+    url: "/partner",
+  }, {
     title: "System",
     icon: "el-icon-menu",
     url: "/system",

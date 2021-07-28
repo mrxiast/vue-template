@@ -409,7 +409,7 @@ export default {
         });
     },
     goView(item) {
-      this.showDia = true;
+      this.$router.push("/customer-detail/" + item.id);
     },
     changePage(val) {},
     changeType(num) {

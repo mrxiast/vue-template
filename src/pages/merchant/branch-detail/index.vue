@@ -2,31 +2,18 @@
   <div class="container">
     <div class="module-box">
       <div>
-        <div class="dia-title">Merchant name: No.1 store</div>
-        <div class="base-style tabs-box">
-          <div
-            :class="detailType === 1 ? 'default-box is-active' : 'default-box'"
-            @click="changeType(1)"
-          >
-            Profile
-          </div>
-          <div
-            :class="detailType === 2 ? 'default-box is-active' : 'default-box'"
-            @click="changeType(2)"
-          >
-            Files
-          </div>
-        </div>
-        <div v-if="detailType === 1">
+        <div class="dia-title">Branch name: No.1 store</div>
+
+        <div>
           <div class="base-style">
-            <div class="base-title">Merchantprofile</div>
+            <div class="base-title">Branch profile</div>
             <div class="mer-one-box">
               <div class="mer-one-one-box" style="display: flex">
                 <div class="mer-one-one-left-box">
                   <div class="mer-ava">
                     <img src="@/static/logo.png" alt="" />
                   </div>
-                  <div class="mer-title">Merchant photo</div>
+                  <div class="mer-title">Branch photo</div>
                 </div>
                 <div class="table-content">
                   <div class="table-content-item">
@@ -195,27 +182,6 @@
             </div>
           </div>
         </div>
-        <div v-if="detailType === 2">
-          <div class="base-style" style="display: flex; flex-wrap: wrap">
-            <div class="file-box" v-for="i in 3" :key="i">
-              <div class="file-img">
-                <img src="@/static/logo.png" alt="" />
-              </div>
-              <div class="file-content">
-                <div>
-                  <div class="file-title">
-                    File name:
-                    <span>8888888888888888888</span>
-                  </div>
-                  <div class="file-title">
-                    Uploaded date:
-                    <span>2021/05/05 12:33:33</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <el-dialog
         width="20%"
@@ -242,7 +208,6 @@ export default {
   data() {
     return {
       showCode: false,
-      detailType: 1,
       commissionVal: "",
       options: [
         {
@@ -271,9 +236,6 @@ export default {
   methods: {
     createQR() {
       this.showCode = true;
-    },
-    changeType(num) {
-      this.detailType = num;
     },
   },
 };
