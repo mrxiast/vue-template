@@ -235,6 +235,13 @@ const router = new Router({
           },
           component: () => import("@/pages/finance/finance-report")
         }, {
+          path: '/system/logos',
+          name: 'Logos management',
+          meta: {
+            name: 'Logos management'
+          },
+          component: () => import("@/pages/system/logos")
+        }, {
           path: '/system/role-management',
           name: 'Portal role management',
           meta: {
@@ -338,6 +345,21 @@ const router = new Router({
             name: 'CTBC approval'
           },
           component: () => import("@/pages/system/approval-center/ctbc-approval")
+        },
+        {
+          path: '/system/approval-center/ctbc-approval/application/:id',
+          name: 'Application form',
+          meta: {
+            name: 'Application form'
+          },
+          component: () => import("@/pages/system/approval-center/ctbc-approval/application")
+        }, {
+          path: '/system/approval-center/ctbc-approval/activate/:id',
+          name: 'Activate form',
+          meta: {
+            name: 'Activate form'
+          },
+          component: () => import("@/pages/system/approval-center/ctbc-approval/activate")
         }, {
           path: '/system/biller-management',
           name: 'Biller management',

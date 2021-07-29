@@ -144,6 +144,11 @@ const navList = [
         icon: "el-icon-menu",
         url: "/system/biller-management",
       },
+      {
+        title: "Logos management",
+        icon: "el-icon-menu",
+        url: "/system/logos",
+      },
 
     ]
   }, {
